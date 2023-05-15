@@ -1,16 +1,28 @@
-# whatsappdmweb
+# WhatsApp-Direct-Messager-Web
 
-A new Flutter project.
 
-## Getting Started
+" WhatsApp Direct Chat: Initiate conversations without saving contacts "
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Project Details
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Users can access the website and enter the phone number of the person they want to communicate with.
+- The website will then redirect the user to a WhatsApp chat window with the corresponding phone number.
+- This can be particularly useful when communicating with someone for a short period.
+- It can also help users to maintain privacy by not adding unnecessary contacts to their phone's address book.
+- This website may be especially useful for businesses or professionals who frequently communicate with new clients or customers but do not want to add every contact to their phone's address book.
+- Users can communicate or chat with individuals who have a mobile number from any country, as long as they have a valid WhatsApp account associated with that number.
+- Additionally, users should ensure they have the correct phone number before sending a message, as there is no saved contact to verify the information.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Website Link
+- [WhatsAppDirectMessagerWeb](https://whatsappdirectme.web.app)
+
+## Installing the App
+- Open the website (above mentioned website).
+- Simply access the three dots located at the top right of the screen and select "install WhatsAppDM" from the dropdown menu.
+
+
+## To, Run code in local
+- Clone the project
+- Run, flutter pub get
+- Run, flutter run

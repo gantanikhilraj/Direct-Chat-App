@@ -10,7 +10,7 @@ class Features extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text('Features of WhatsAppDM'),
+        title: const Text('About WhatsAppDM'),
         // elevation: 0.0,
       ),
       body: Padding(

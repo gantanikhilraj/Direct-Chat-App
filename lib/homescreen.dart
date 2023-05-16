@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,7 +66,7 @@ class _Homescreen extends State<Homescreen> {
                 totalRepeatCount: 1,
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    '"WhatsApp Direct Chat: Initiate conversations without saving contacts"',
+                    '" WhatsApp Direct Chat: Initiate conversations without saving contacts "',
                     textStyle: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -88,7 +87,7 @@ class _Homescreen extends State<Homescreen> {
                 size: 30,
               ),
               favorite: const ['+91', 'In'],
-              showCountryOnly: true,
+              showCountryOnly: false,
               showOnlyCountryWhenClosed: false,
               alignLeft: true,
             ),
@@ -141,19 +140,17 @@ class _Homescreen extends State<Homescreen> {
                   backgroundColor: Colors.green,
                   fixedSize: const Size(150, 30)),
               onPressed: () async {
-                var connectivityResult =
-                    await (Connectivity().checkConnectivity());
-                if (connectivityResult == ConnectivityResult.none) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(ConstantsText.snackbarlnetwork);
-                  return;
-                } else if (phone.isEmpty) {
+                if (phone.isEmpty) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(ConstantsText.snackbarempty);
                   return;
                 } else if (phone.length < 7) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(ConstantsText.snackbarlength);
+                  return;
+                } else if (phone.length > 12) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(ConstantsText.snackbaroverlength);
                   return;
                 } else {
                   code = code.replaceAll("+", "");
@@ -176,6 +173,7 @@ class _Homescreen extends State<Homescreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 60),
           ],
         ),
       )),

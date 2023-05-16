@@ -16,17 +16,21 @@ class DrawerWDM extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.green),
                 accountName: Text(
-                  "Developed by\nGanta Nikhil Raj",
-                  style: TextStyle(fontSize: 15),
+                  "@WhatsAppDM :",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-                accountEmail: null,
+                accountEmail: Text("Direct Message for WhatsApp"),
               ),
             ),
             ListTile(
               leading: const Icon(
-                Icons.home,
+                Icons.home_outlined,
                 color: Colors.black,
-                size: 26,
+                size: 28,
               ),
               title: const Text('Home', style: TextStyle(fontSize: 18)),
               onTap: () {
@@ -41,11 +45,11 @@ class DrawerWDM extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(
-                Icons.add_card_rounded,
+                Icons.add_card,
                 color: Colors.black,
                 size: 26,
               ),
-              title: const Text('Features', style: TextStyle(fontSize: 18)),
+              title: const Text('About', style: TextStyle(fontSize: 18)),
               onTap: () {
                 Navigator.pushNamed(context, Features.id);
               },
@@ -57,7 +61,7 @@ class DrawerWDM extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(
-                Icons.bug_report,
+                Icons.bug_report_outlined,
                 color: Colors.black,
                 size: 26,
               ),

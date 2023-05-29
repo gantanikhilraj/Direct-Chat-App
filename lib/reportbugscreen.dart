@@ -34,7 +34,8 @@ class Reportbug extends StatelessWidget {
                 onPressed: (() {
                   if (controllerMessage.text.length < 20) {
                     ScaffoldMessenger.of(context)
-                        .showSnackBar(ConstantsText.snackbarfeedbacklentherror);
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(ConstantsText.snackbarfeedbacklentherror);
                   } else {
                     launchEmail(
                       // subject: controllersubject.text,

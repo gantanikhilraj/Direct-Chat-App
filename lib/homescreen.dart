@@ -49,22 +49,22 @@ class _Homescreen extends State<Homescreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              InkWell(
-                hoverColor: Colors.blueGrey[300],
-                splashColor: Colors.blueGrey,
-                onTap: (() => launch(
-                    "https:play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp")),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Click here to download from Playstore",
-                    ),
-                    Icon(Icons.link_outlined),
-                  ],
-                ),
-              ),
+              // InkWell(
+              //   hoverColor: Colors.blueGrey[300],
+              //   splashColor: Colors.blueGrey,
+              //   onTap: (() => launch(
+              //       "https:play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp")),
+              //   child: Row(
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: const [
+              //       Text(
+              //         "Click here to download from Playstore",
+              //       ),
+              //       Icon(Icons.link_outlined),
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.all(10.0),
@@ -77,7 +77,7 @@ class _Homescreen extends State<Homescreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 60, top: 30),
+                padding: const EdgeInsets.only(bottom: 20, top: 20),
                 child: AnimatedTextKit(
                   repeatForever: false,
                   totalRepeatCount: 1,

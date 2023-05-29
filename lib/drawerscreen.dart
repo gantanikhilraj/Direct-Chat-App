@@ -16,10 +16,10 @@ class DrawerWDM extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.green),
                 accountName: Text(
-                  "@WhatsAppDM :",
+                  "@WhatsApp Direct Chat:",
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
@@ -35,7 +35,7 @@ class DrawerWDM extends StatelessWidget {
               title: const Text('Home', style: TextStyle(fontSize: 18)),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, Homescreen.id);
+                // Navigator.pushNamed(context, Homescreen.id);
               },
             ),
             const Divider(

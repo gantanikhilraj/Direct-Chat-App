@@ -20,12 +20,27 @@
 ## App Link
 - [Platstore Link](https://play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp)
 
-## Installing the App
-- Open the website (above mentioned website).
-- Simply access the three dots located at the top right of the screen and select "install WhatsAppDM" from the dropdown menu.
+## Installation
 
+To install WhatsApp Direct Chat, follow the steps below:
 
-## To, Run code in local
-- Clone the project
-- Run, flutter pub get
-- Run, flutter run
+1. Clone the repository (`git clone https://github.com/gantanikhilraj/WhatsApp-Direct-Messager-Web.git`)
+2. Install the required dependencies (`flutter pub get`)
+3. Start the app (`flutter run`)
+
+## Contributions
+We appreciate all contributions from the community, and we would like everyone to contribute whether it's code or no-code.
+
+### Types of Contributions
+- Raise Issues and Bugs
+- Review our project and provide us feedback
+- Suggest new features and improvements
+- Code based Contribution (Flutter)
+
+### Steps to Code Contributions
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeatureName`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeatureName`)
+5. Open a pull request
+

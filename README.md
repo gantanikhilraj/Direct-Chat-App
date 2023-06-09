@@ -40,7 +40,8 @@ We appreciate all contributions from the community, and we would like everyone t
 ### Steps to Code Contributions
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/YourFeatureName`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeatureName`)
-5. Open a pull request
+3. add your changes (`git add .`)
+4. Commit your changes (`git commit -m 'Add some feature'`)
+5. Push to the branch (`git push origin feature/YourFeatureName`)
+6. Open a pull request
 

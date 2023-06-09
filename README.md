@@ -15,7 +15,7 @@
 - Additionally, users should ensure they have the correct phone number before sending a message, as there is no saved contact to verify the information.
 
 ## Website Link
-- [WhatsAppDirectMessagerWeb](https://whatsappdirectme.web.app)
+- [WhatsApp Direct Chat Web](https://whatsappdirectme.web.app)
 
 ## App Link
 - [Platstore Link](https://play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp)

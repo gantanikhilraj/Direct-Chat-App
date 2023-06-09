@@ -17,6 +17,9 @@
 ## Website Link
 - [WhatsAppDirectMessagerWeb](https://whatsappdirectme.web.app)
 
+## App Link
+- [Platstore Link](https://play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp)
+
 ## Installing the App
 - Open the website (above mentioned website).
 - Simply access the three dots located at the top right of the screen and select "install WhatsAppDM" from the dropdown menu.

@@ -18,7 +18,7 @@
 - [WhatsApp Direct Chat Web](https://whatsappdirectme.web.app)
 
 ## App Link
-- [Platstore Link](https://play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp)
+- [Playstore Link](https://play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp)
 
 ## Installation
 

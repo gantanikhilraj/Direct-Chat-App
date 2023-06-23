@@ -17,9 +17,6 @@
 ## Website Link
 - [WhatsApp Direct Chat Web](https://whatsappdirectme.web.app)
 
-## App Link
-- [Playstore Link](https://play.google.com/store/apps/details?id=com.wameapp.whatsappdmandroidapp)
-
 ## Installation
 
 To install WhatsApp Direct Chat, follow the steps below:

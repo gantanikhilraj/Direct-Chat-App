@@ -15,14 +15,30 @@
 - Additionally, users should ensure they have the correct phone number before sending a message, as there is no saved contact to verify the information.
 
 ## Website Link
-- [WhatsAppDirectMessagerWeb](https://whatsappdirectme.web.app)
+- [WhatsApp Direct Chat Web](https://whatsappdirectme.web.app)
 
-## Installing the App
-- Open the website (above mentioned website).
-- Simply access the three dots located at the top right of the screen and select "install WhatsAppDM" from the dropdown menu.
+## Installation
 
+To install WhatsApp Direct Chat, follow the steps below:
 
-## To, Run code in local
-- Clone the project
-- Run, flutter pub get
-- Run, flutter run
+1. Clone the repository (`git clone https://github.com/gantanikhilraj/WhatsApp-Direct-Messager-Web.git`)
+2. Install the required dependencies (`flutter pub get`)
+3. Start the app (`flutter run`)
+
+## Contributions
+We appreciate all contributions from the community, and we would like everyone to contribute whether it's code or no-code.
+
+### Types of Contributions
+- Raise Issues and Bugs
+- Review our project and provide us feedback
+- Suggest new features and improvements
+- Code based Contribution (Flutter)
+
+### Steps to Code Contributions
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeatureName`)
+3. Add your changes (`git add .`)
+4. Commit your changes (`git commit -m 'Add some feature'`)
+5. Push to the branch (`git push origin feature/YourFeatureName`)
+6. Open a pull request
+

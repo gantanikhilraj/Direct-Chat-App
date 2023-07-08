@@ -1,11 +1,11 @@
 {
-    "name": "WhatsAppDM",
-    "short_name": "WhatsAppDM",
+    "name": "Direct Chat",
+    "short_name": "Direct Chat",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
     "theme_color": "#FFFFFF",
-    "description": "WhatsApp Direct: Connect with Ease Without Saving Contacts",
+    "description": "Direct Chat for WhatsApp: Initiate conversations without saving contacts",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

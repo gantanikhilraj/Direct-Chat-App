@@ -8,6 +8,8 @@ class Reportbug extends StatelessWidget {
   // final controllersubject = TextEditingController();
   final controllerMessage = TextEditingController();
 
+  Reportbug({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,12 +37,13 @@ class Reportbug extends StatelessWidget {
                   if (controllerMessage.text.length < 20) {
                     ScaffoldMessenger.of(context)
                       ..hideCurrentSnackBar()
-                      ..showSnackBar(ConstantsText.snackbarfeedbacklentherror);
+                      ..showSnackBar(Constants.snackbarfeedbacklentherror);
                   } else {
                     launchEmail(
                       // subject: controllersubject.text,
                       message: controllerMessage.text,
                     );
+                    controllerMessage.clear();
                   }
                 }),
                 child: const Text("Send Feedback"),
@@ -78,13 +81,13 @@ class Reportbug extends StatelessWidget {
           const SizedBox(height: 10),
           TextField(
             maxLength: 1000,
-            cursorColor: Colors.black,
+            // cursorColor: Colors.black,
             enabled: true,
             keyboardType: TextInputType.text,
             autofocus: false,
             maxLines: 10,
-            cursorHeight: 25,
-            cursorWidth: 2,
+            // cursorHeight: 25,
+            // cursorWidth: 2,
             style: const TextStyle(
               fontSize: 16,
             ),

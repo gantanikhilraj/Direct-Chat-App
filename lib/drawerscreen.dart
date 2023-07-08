@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_dm/features.dart';
-import 'package:whatsapp_dm/homescreen.dart';
+// import 'package:whatsapp_dm/homescreen.dart';
 import 'package:whatsapp_dm/reportbugscreen.dart';
 
 class DrawerWDM extends StatelessWidget {
   static const String id = 'AboutScreen';
+
+  const DrawerWDM({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +18,14 @@ class DrawerWDM extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.green),
                 accountName: Text(
-                  "@WhatsApp Direct Chat:",
+                  "@Direct Chat for WhatsApp:",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                accountEmail: Text("Direct Message for WhatsApp"),
+                accountEmail: Text("By Nikhil Raj"),
               ),
             ),
             ListTile(
@@ -49,7 +51,7 @@ class DrawerWDM extends StatelessWidget {
                 color: Colors.black,
                 size: 26,
               ),
-              title: const Text('About', style: TextStyle(fontSize: 18)),
+              title: const Text('Features', style: TextStyle(fontSize: 18)),
               onTap: () {
                 Navigator.pushNamed(context, Features.id);
               },

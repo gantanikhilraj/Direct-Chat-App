@@ -18,7 +18,7 @@ class DrawerWDM extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.green),
                 accountName: Text(
-                  "@Direct Chat for WhatsApp:",
+                  "@Direct Chat for WhatsApp",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,

@@ -53,22 +53,22 @@ class _Homescreen extends State<Homescreen> {
         }
       },
       child: Scaffold(
-        drawer: DrawerWDM(),
+        drawer: const DrawerWDM(),
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0.0,
           actions: [
             IconButton(
               onPressed: (() async {
-                const url = 'https://whatsappdirectme.web.app/';
+                const url = 'https://wa.openinapp.co/ygufb';
                 await Share.share(
-                    'Direct Chat for WhatsApp: Initiate Conversations without savings contacts\n$url');
+                    'Unlock Seamless Conversations on WhatsApp 🚀: Start Chats without Adding Contacts First! 📲💬 Try this App Today! 🔥👉 $url');
               }),
               icon: const Icon(Icons.share),
             ),
           ],
           systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+            statusBarColor: Colors.black,
           ),
           backgroundColor: Colors.green,
           title: const Row(

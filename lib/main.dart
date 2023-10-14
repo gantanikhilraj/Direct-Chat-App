@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'package:whatsapp_dm/features.dart';
-import 'package:whatsapp_dm/homescreen.dart';
-import 'package:whatsapp_dm/reportbugscreen.dart';
+import 'package:whatsapp_dm/screens/home_screen.dart';
+import 'package:whatsapp_dm/modals/provider_data.dart';
+import 'package:whatsapp_dm/screens/qr_screen.dart';
+import 'package:whatsapp_dm/screens/reportbug_screen.dart';
 
 void main() {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => WhatsAppData(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +28,8 @@ class MyApp extends StatelessWidget {
       home: const Homescreen(),
       routes: {
         // Homescreen.id: (context) => const Homescreen(),
-        Features.id: (context) => const Features(),
+        // Features.id: (context) => const Features(),
+        QRCodeGenerator.id: (context) => const QRCodeGenerator(),
         Reportbug.id: (context) => Reportbug(),
       },
     );

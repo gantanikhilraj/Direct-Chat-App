@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_dm/features.dart';
-// import 'package:whatsapp_dm/homescreen.dart';
-import 'package:whatsapp_dm/reportbugscreen.dart';
+import 'package:whatsapp_dm/screens/qr_screen.dart';
+
+import 'package:whatsapp_dm/screens/reportbug_screen.dart';
 
 class DrawerWDM extends StatelessWidget {
   static const String id = 'AboutScreen';
@@ -12,6 +12,7 @@ class DrawerWDM extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTileTheme(
       child: Drawer(
+        backgroundColor: Colors.white,
         child: ListView(
           children: [
             const SingleChildScrollView(
@@ -47,13 +48,13 @@ class DrawerWDM extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(
-                Icons.add_card,
+                Icons.qr_code_scanner,
                 color: Colors.black,
                 size: 26,
               ),
-              title: const Text('Features', style: TextStyle(fontSize: 18)),
+              title: const Text('Qr Code', style: TextStyle(fontSize: 18)),
               onTap: () {
-                Navigator.pushNamed(context, Features.id);
+                Navigator.pushNamed(context, QRCodeGenerator.id);
               },
             ),
             const Divider(

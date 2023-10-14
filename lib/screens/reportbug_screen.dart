@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:whatsapp_dm/constants.dart';
+import 'package:whatsapp_dm/helpers/constants.dart';
 
 class Reportbug extends StatelessWidget {
   static const String id = 'ReportBug';
@@ -14,6 +15,9 @@ class Reportbug extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+        ),
         backgroundColor: Colors.green,
         title: const Text("Feedback or Bug Report"),
       ),

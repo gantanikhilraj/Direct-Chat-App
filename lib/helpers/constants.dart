@@ -72,4 +72,11 @@ class Constants {
     content: Text("Feedback or bug should be atleast 20 words"),
     backgroundColor: Colors.red,
   );
+  static final qrCodeEmpty = SnackBar(
+    action:
+        SnackBarAction(label: "x", textColor: Colors.white, onPressed: (() {})),
+    duration: const Duration(seconds: 2),
+    content: const Text("Enter Phone Number to Generate QR Code"),
+    backgroundColor: Colors.red,
+  );
 }

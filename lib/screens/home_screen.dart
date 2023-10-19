@@ -1,8 +1,8 @@
-import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_dm/modals/provider_data.dart';
@@ -10,6 +10,7 @@ import 'package:whatsapp_dm/screens/qr_screen.dart';
 import 'package:whatsapp_dm/helpers/constants.dart';
 import 'package:whatsapp_dm/screens/drawer_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:whatsapp_dm/services/admob.dart';
 
 class Homescreen extends StatefulWidget {
   static const String id = 'HomeScreen';
@@ -21,6 +22,37 @@ class Homescreen extends StatefulWidget {
 }
 
 class _Homescreen extends State<Homescreen> {
+  BannerAd? _banner;
+  late InterstitialAd interstitialAd;
+  bool isAdloaded = false;
+  bool adShown = false;
+  initInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdMobService.homeShareInter,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          interstitialAd = ad;
+          setState(() {
+            isAdloaded = true;
+          });
+        },
+        onAdFailedToLoad: ((error) {
+          interstitialAd.dispose();
+        }),
+      ),
+    );
+  }
+
+  void _createBannerAd() {
+    _banner = BannerAd(
+      size: AdSize.smartBanner,
+      adUnitId: AdMobService.homescreenBannerUnitID,
+      listener: AdMobService.homescreenbannerListener,
+      request: const AdRequest(),
+    )..load();
+  }
+
   bool isListTileVisible = true;
   final textfieldphone = TextEditingController();
   final textfieldtext = TextEditingController();
@@ -36,11 +68,21 @@ class _Homescreen extends State<Homescreen> {
     super.initState();
     final whatsappData = Provider.of<WhatsAppData>(context, listen: false);
     whatsappData.loadAppVersion();
-    Timer(const Duration(seconds: 45), () {
-      setState(() {
-        isListTileVisible = false;
-      });
-    });
+    // Timer(const Duration(seconds: 45), () {
+    //   setState(() {
+    //     isListTileVisible = false;
+    //   });
+    // });
+    _createBannerAd();
+    initInterstitialAd();
+  }
+
+  @override
+  void dispose() {
+    _banner?.dispose();
+    interstitialAd.dispose();
+    _createBannerAd();
+    super.dispose();
   }
 
   @override
@@ -68,11 +110,18 @@ class _Homescreen extends State<Homescreen> {
               icon: const Icon(Icons.qr_code),
             ),
             IconButton(
-              onPressed: (() async {
-                const url = 'https://wa.openinapp.co/ygufb';
-                await Share.share(
-                    'Unlock Seamless Conversations on WhatsApp 🚀: Start Chats without Adding Contacts First! 📲💬 Try this App Today! 🔥👉 $url');
-              }),
+              onPressed: () async {
+                if (!adShown) {
+                  if (isAdloaded) {
+                    await interstitialAd.show();
+                    adShown = true;
+                  }
+                } else {
+                  await Share.share(
+                    'Unlock Seamless Conversations on WhatsApp 🚀: Start Chats without Adding Contacts First! 📲💬 Try this App Today! 🔥👉 ${Constants.playstoreURL}',
+                  );
+                }
+              },
               icon: const Icon(Icons.share),
             ),
           ],
@@ -144,7 +193,9 @@ class _Homescreen extends State<Homescreen> {
                     keyboardType: TextInputType.phone,
                     onChanged: (value) {
                       setState(() {
-                        if (value.contains(' ')) {
+                        if (value.contains(' ') ||
+                            value.contains('-') ||
+                            value.contains('.')) {
                           errortextfeile = 'Don\'t use blank spaces';
                         } else {
                           errortextfeile = '';
@@ -168,7 +219,10 @@ class _Homescreen extends State<Homescreen> {
                         visible: textfieldphone.text.isNotEmpty,
                         child: GestureDetector(
                           onTap: () {
-                            whatsappData.clearTextFields();
+                            setState(() {
+                              textfieldphone.clear();
+                              whatsappData.phone = '';
+                            });
                           },
                           child: const Icon(
                             Icons.clear,
@@ -271,37 +325,7 @@ class _Homescreen extends State<Homescreen> {
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: isListTileVisible,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.grey[400],
-                    child: const Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "New Feature Alert!!!",
-                            style: TextStyle(
-                              fontFamily: AutofillHints.birthdayDay,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "Get your personalized QR code for easy mobile number sharing – generate, scan, and connect hassle-free!",
-                            style: TextStyle(
-                              fontFamily: AutofillHints.birthdayDay,
-                              fontSize: 18,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 70),
                   child: Center(
@@ -326,10 +350,49 @@ class _Homescreen extends State<Homescreen> {
                     ),
                   ),
                 ),
+                // Visibility(
+                //   visible: isListTileVisible,
+                //   child: Container(
+                //     width: MediaQuery.of(context).size.width * 0.9,
+                //     height: MediaQuery.of(context).size.height * 0.15,
+                //     color: Colors.grey[400],
+                //     child: const Padding(
+                //       padding: EdgeInsets.all(12),
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text(
+                //             "New Feature Alert!!!",
+                //             style: TextStyle(
+                //               fontFamily: AutofillHints.birthdayDay,
+                //               fontSize: 18,
+                //               fontWeight: FontWeight.bold,
+                //             ),
+                //           ),
+                //           Text(
+                //             "Get your personalized QR code for easy mobile number sharing – generate, scan, and connect hassle-free!",
+                //             style: TextStyle(
+                //               fontFamily: AutofillHints.birthdayDay,
+                //               fontSize: 18,
+                //             ),
+                //           )
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
         ),
+        bottomNavigationBar: _banner == null
+            ? Container()
+            : Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                height: 52,
+                width: MediaQuery.of(context).size.width,
+                child: AdWidget(ad: _banner!),
+              ),
       ),
     );
   }

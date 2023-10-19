@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:whatsapp_dm/helpers/constants.dart';
 import 'package:whatsapp_dm/helpers/operations.dart';
+import 'package:whatsapp_dm/services/admob.dart';
 
 final GlobalKey boundaryKey = GlobalKey();
 
@@ -17,6 +19,30 @@ class QRCodeGenerator extends StatefulWidget {
 }
 
 class _QRCodeGeneratorState extends State<QRCodeGenerator> {
+  BannerAd? _banner;
+
+  void _createBannerAd() {
+    _banner = BannerAd(
+      size: AdSize.smartBanner,
+      adUnitId: AdMobService.qrScreenBannerUnitID,
+      listener: AdMobService.homescreenbannerListener,
+      request: const AdRequest(),
+    )..load();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _createBannerAd();
+  }
+
+  @override
+  void dispose() {
+    _banner?.dispose();
+    _createBannerAd();
+    super.dispose();
+  }
+
   TextEditingController phoneController = TextEditingController();
   TextEditingController messageController = TextEditingController();
 
@@ -79,13 +105,27 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                 TextField(
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    focusedBorder: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 2.0),
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     ),
                     labelText: 'Phone Number',
-                    labelStyle: TextStyle(color: Colors.black),
+                    labelStyle: const TextStyle(color: Colors.black),
+                    suffixIcon: Visibility(
+                      visible: phoneController.text.isNotEmpty,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            phoneController.clear();
+                          });
+                        },
+                        child: const Icon(
+                          Icons.clear,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                   cursorColor: Colors.black,
                 ),
@@ -174,77 +214,92 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                   ),
                 ),
                 Visibility(
-                  visible: whatsappURL.isNotEmpty,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.lightGreen),
-                        ),
-                        onPressed: () {
-                          shareQRCode();
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(Icons.share, color: Colors.black, size: 24),
-                            Text(
-                              'Share QR Code',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Visibility(
-                        visible: whatsappURL.isNotEmpty,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.lightGreen),
-                          ),
-                          onPressed: () {
-                            saveQRCodeToGallery();
-                          },
-                          child: Row(
-                            children: [
-                              const Icon(Icons.download_rounded,
-                                  color: Colors.black, size: 24),
-                              GestureDetector(
-                                onTap: () {
-                                  Fluttertoast.showToast(
-                                    msg: 'QR code saved to the gallery',
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    backgroundColor: Colors.grey,
-                                    textColor: Colors.white,
-                                  );
-                                },
-                                child: const Text(
-                                  'Save to Gallery',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                    visible: whatsappURL.isNotEmpty,
+                    child: const Text(
+                        "Press on the QR code to save it to the gallery")),
+                Visibility(
+                    visible: whatsappURL.isNotEmpty,
+                    child: const Text("Long Press on the QR code to share it")),
+                // Visibility(
+                //   visible: whatsappURL.isNotEmpty,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     children: [
+                //       TextButton(
+                //         style: ButtonStyle(
+                //           backgroundColor:
+                //               MaterialStateProperty.all(Colors.lightGreen),
+                //         ),
+                //         onPressed: () {
+                //           shareQRCode();
+                //         },
+                //         child: const Row(
+                //           children: [
+                //             Icon(Icons.share, color: Colors.black, size: 24),
+                //             Text(
+                //               'Share QR',
+                //               style: TextStyle(
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.bold,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //       const SizedBox(width: 16),
+                //       // Visibility(
+                //       //   visible: whatsappURL.isNotEmpty,
+                //       //   child: TextButton(
+                //       //     style: ButtonStyle(
+                //       //       backgroundColor:
+                //       //           MaterialStateProperty.all(Colors.lightGreen),
+                //       //     ),
+                //       //     onPressed: () {
+                //       //       saveQRCodeToGallery();
+                //       //     },
+                //       //     child: Row(
+                //       //       children: [
+                //       //         const Icon(Icons.download_rounded,
+                //       //             color: Colors.black, size: 24),
+                //       //         GestureDetector(
+                //       //           onTap: () {
+                //       //             Fluttertoast.showToast(
+                //       //               msg: 'QR code saved to the gallery',
+                //       //               toastLength: Toast.LENGTH_SHORT,
+                //       //               gravity: ToastGravity.BOTTOM,
+                //       //               backgroundColor: Colors.grey,
+                //       //               textColor: Colors.white,
+                //       //             );
+                //       //           },
+                //       //           child: const Text(
+                //       //             'Save to Gallery',
+                //       //             style: TextStyle(
+                //       //               color: Colors.black,
+                //       //               fontSize: 16,
+                //       //               fontWeight: FontWeight.bold,
+                //       //             ),
+                //       //           ),
+                //       //         ),
+                //       //       ],
+                //       //     ),
+                //       //   ),
+                //       // ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
         ),
+        bottomNavigationBar: _banner == null
+            ? Container()
+            : Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                height: 52,
+                width: MediaQuery.of(context).size.width,
+                child: AdWidget(ad: _banner!),
+              ),
       ),
     );
   }

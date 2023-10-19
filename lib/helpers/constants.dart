@@ -4,28 +4,6 @@ import 'package:flutter/material.dart';
 //   static const Color black = Color(0xFF010312);
 // }
 
-// class ConstantsText {
-//   static const snackbarempty = SnackBar(
-//     content: Text("Please enter mobile number"),
-//     backgroundColor: Colors.red,
-//     duration: Duration(seconds: 2),
-//   );
-//   static const snackbaroverlength = SnackBar(
-//     content: Text("Please check the number and try again"),
-//     backgroundColor: Colors.red,
-//     duration: Duration(seconds: 2),
-//   );
-//   static const snackbarlength = SnackBar(
-//     content: Text("Please enter a valid phone number"),
-//     backgroundColor: Colors.red,
-//     duration: Duration(seconds: 2),
-//   );
-//   static const snackbarfeedbacklentherror = SnackBar(
-//     duration: Duration(seconds: 2),
-//     content: Text("Feedback or bug should be atleast 20 characters"),
-//     backgroundColor: Colors.red,
-//   );
-// }
 class Constants {
   static final snackbarempty = SnackBar(
     action: SnackBarAction(
@@ -79,4 +57,5 @@ class Constants {
     content: const Text("Enter Phone Number to Generate QR Code"),
     backgroundColor: Colors.red,
   );
+  static String playstoreURL = "https://directchat.openinapp.co/playstorelink";
 }

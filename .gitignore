@@ -42,3 +42,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#hidden files
+/lib/services/admob.dart
+/android/app/google-services.json

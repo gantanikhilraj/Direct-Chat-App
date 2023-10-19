@@ -23,7 +23,7 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
 
   void _createBannerAd() {
     _banner = BannerAd(
-      size: AdSize.smartBanner,
+      size: AdSize.banner,
       adUnitId: AdMobService.qrScreenBannerUnitID,
       listener: AdMobService.homescreenbannerListener,
       request: const AdRequest(),

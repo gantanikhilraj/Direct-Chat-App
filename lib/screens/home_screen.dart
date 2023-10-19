@@ -46,7 +46,7 @@ class _Homescreen extends State<Homescreen> {
 
   void _createBannerAd() {
     _banner = BannerAd(
-      size: AdSize.smartBanner,
+      size: AdSize.banner,
       adUnitId: AdMobService.homescreenBannerUnitID,
       listener: AdMobService.homescreenbannerListener,
       request: const AdRequest(),

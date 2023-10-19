@@ -214,12 +214,14 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                   ),
                 ),
                 Visibility(
-                    visible: whatsappURL.isNotEmpty,
-                    child: const Text(
-                        "Press on the QR code to save it to the gallery")),
+                  visible: whatsappURL.isNotEmpty,
+                  child: const Text(
+                      "Press on the QR code to save it to the gallery"),
+                ),
                 Visibility(
-                    visible: whatsappURL.isNotEmpty,
-                    child: const Text("Long Press on the QR code to share it")),
+                  visible: whatsappURL.isNotEmpty,
+                  child: const Text("Long Press on the QR code to share it"),
+                ),
                 // Visibility(
                 //   visible: whatsappURL.isNotEmpty,
                 //   child: Row(

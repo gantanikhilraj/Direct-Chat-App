@@ -154,7 +154,9 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                         ..showSnackBar(Constants.qrCodeEmpty);
                     } else if (phoneController.text.length < 9 ||
                         phoneController.text.length > 12) {
-                      generateWhatsAppURL();
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(Constants.snackbarlength);
                     } else {
                       generateWhatsAppURL();
                     }

@@ -291,12 +291,12 @@ class _Homescreen extends State<Homescreen> {
                           ..hideCurrentSnackBar()
                           ..showSnackBar(Constants.snackbarempty);
                         return;
-                      } else if (whatsappData.phone.length < 10) {
+                      } else if (whatsappData.phone.length < 9) {
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
                           ..showSnackBar(Constants.snackbarlength);
                         return;
-                      } else if (whatsappData.phone.length > 11) {
+                      } else if (whatsappData.phone.length > 12) {
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
                           ..showSnackBar(Constants.snackbaroverlength);

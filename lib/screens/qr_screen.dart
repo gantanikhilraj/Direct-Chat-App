@@ -148,11 +148,13 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                     backgroundColor: MaterialStateProperty.all(Colors.green),
                   ),
                   onPressed: () {
-                    if (phoneController.text.isEmpty ||
-                        phoneController.text.length < 10) {
+                    if (phoneController.text.isEmpty) {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
                         ..showSnackBar(Constants.qrCodeEmpty);
+                    } else if (phoneController.text.length < 9 ||
+                        phoneController.text.length > 12) {
+                      generateWhatsAppURL();
                     } else {
                       generateWhatsAppURL();
                     }

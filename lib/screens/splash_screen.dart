@@ -6,41 +6,44 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    {
-      Future.delayed(
-        const Duration(seconds: 2),
-        () {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const Homescreen()));
-        },
-      );
-      return Container(
-        color: Colors.white,
-        child: SafeArea(
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/images/icon48.png",
-                    fit: BoxFit.contain,
-                    color: Colors.green,
-                    height: 100,
-                    width: 100,
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Homescreen()),
+        );
+      },
+    );
+
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: AspectRatio(
+                    aspectRatio: 0.2, // Maintain a square aspect ratio
+                    child: Image.asset(
+                      "assets/images/icon48.png",
+                      fit: BoxFit.contain,
+                      color: Colors.green,
+                    ),
                   ),
-                  const SizedBox(height: 5),
-                  const Text(
-                    "Direct Chat App",
-                    style: TextStyle(color: Colors.green),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 5),
+                const Text(
+                  "Direct Chat App",
+                  style: TextStyle(color: Colors.green),
+                ),
+              ],
             ),
           ),
         ),
-      );
-    }
+      ),
+    );
   }
 }

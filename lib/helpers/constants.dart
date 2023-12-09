@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 // class ConstantColors {
 //   static const Color black = Color(0xFF010312);
 // }
@@ -57,5 +57,22 @@ class Constants {
     content: const Text("Enter Phone Number to Generate QR Code"),
     backgroundColor: Colors.red,
   );
+  static void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.grey,
+      textColor: Colors.black,
+    );
+  }
+}
+
+class ConstantsText {
   static String playstoreURL = "https://directchat.openinapp.co/playstorelink";
+  static String shareText =
+      "Unlock Seamless Conversations on WhatsApp 🚀: Start Chats without Adding Contacts First! 📲💬 Try this App Today! 🔥👉";
+  static String appTitle = "Direct Chat";
+  static String mainScreenTitle =
+      "Direct Chat & QR :\nInitiate conversations without saving contacts";
 }

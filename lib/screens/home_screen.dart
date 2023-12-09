@@ -56,7 +56,7 @@ class _Homescreen extends State<Homescreen> {
   bool isListTileVisible = true;
   final textfieldphone = TextEditingController();
   final textfieldtext = TextEditingController();
-  String errortextfeile = '';
+  String errortextfield = '';
 
   void cleartext() {
     textfieldphone.clear();
@@ -88,7 +88,6 @@ class _Homescreen extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     final whatsappData = Provider.of<WhatsAppData>(context);
-
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return GestureDetector(
@@ -118,270 +117,273 @@ class _Homescreen extends State<Homescreen> {
                   }
                 } else {
                   await Share.share(
-                    'Unlock Seamless Conversations on WhatsApp 🚀: Start Chats without Adding Contacts First! 📲💬 Try this App Today! 🔥👉 ${Constants.playstoreURL}',
+                    '${ConstantsText.shareText} ${ConstantsText.playstoreURL}',
                   );
                 }
               },
               icon: const Icon(Icons.share),
             ),
           ],
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.green[400],
           ),
           backgroundColor: Colors.green,
-          title: const Text(
-            "Direct Chat",
-            style: TextStyle(fontSize: 20, color: Colors.white),
+          title: Text(
+            ConstantsText.appTitle,
+            style: const TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
         body: SingleChildScrollView(
           child: Container(
+            // height: MediaQuery.of(context).size.height * 1,
             padding: EdgeInsets.all(screenHeight * 0.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Container(
-                //   margin: EdgeInsets.all(screenHeight * 0.02),
-                //   padding: const EdgeInsets.all(16.0),
-                //   decoration:
-                //       BoxDecoration(border: Border.all(color: Colors.black)),
-                //   child: const Text(
-                //     "The app or website does not store any of the phone numbers or personal information entered by the user, providing an additional layer of privacy protection.",
-                //     textAlign: TextAlign.center,
-                //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                //   ),
-                // ),
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    "Direct Chat for WhatsApp :\nInitiate conversations without saving contacts",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  child: CountryCodePicker(
-                    onChanged: (val) {
-                      whatsappData.updateCode(val.toString());
-                    },
-                    initialSelection: 'IN',
-                    showDropDownButton: true,
-                    dialogSize: const Size(500, 600),
-                    closeIcon: const Icon(
-                      Icons.close_outlined,
-                      size: 30,
-                      color: Colors.black,
-                    ),
-                    favorite: const ['+91', 'In'],
-                    showCountryOnly: false,
-                    showOnlyCountryWhenClosed: false,
-                    alignLeft: true,
-                    enabled: true,
-                    dialogBackgroundColor: Colors.white,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    autofocus: false,
-                    controller: textfieldphone,
-                    cursorColor: Colors.black,
-                    keyboardType: TextInputType.phone,
-                    onChanged: (value) {
-                      setState(() {
-                        if (value.contains(' ') ||
-                            value.contains('-') ||
-                            value.contains('.')) {
-                          errortextfeile = 'Don\'t use blank spaces';
-                        } else {
-                          errortextfeile = '';
-                          whatsappData.updatePhone(value);
-                        }
-                      });
-                    },
-                    decoration: InputDecoration(
-                      errorText: errortextfeile.isEmpty ? null : errortextfeile,
-                      focusedBorder: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32.0),
-                        ),
-                        borderSide: BorderSide(width: 1, color: Colors.black),
-                      ),
-                      prefixIcon: const Icon(
-                        Icons.phone,
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Container(
+                  //   margin: EdgeInsets.all(screenHeight * 0.02),
+                  //   padding: const EdgeInsets.all(16.0),
+                  //   decoration:
+                  //       BoxDecoration(border: Border.all(color: Colors.black)),
+                  //   child: const Text(
+                  //     "The app or website does not store any of the phone numbers or personal information entered by the user, providing an additional layer of privacy protection.",
+                  //     textAlign: TextAlign.center,
+                  //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      ConstantsText.mainScreenTitle,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: screenHeight * 0.03,
                         color: Colors.black,
                       ),
-                      suffixIcon: Visibility(
-                        visible: textfieldphone.text.isNotEmpty,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              textfieldphone.clear();
-                              whatsappData.phone = '';
-                            });
-                          },
-                          child: const Icon(
-                            Icons.clear,
-                            color: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: CountryCodePicker(
+                      onChanged: (val) {
+                        whatsappData.updateCode(val.toString());
+                      },
+                      initialSelection: 'IN',
+                      showDropDownButton: true,
+                      dialogSize: const Size(500, 600),
+                      closeIcon: const Icon(
+                        Icons.close_outlined,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      favorite: const ['+91', 'In'],
+                      showCountryOnly: false,
+                      showOnlyCountryWhenClosed: false,
+                      alignLeft: true,
+                      enabled: true,
+                      dialogBackgroundColor: Colors.white,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextFormField(
+                      autofocus: false,
+                      controller: textfieldphone,
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.phone,
+                      onChanged: (value) {
+                        setState(() {
+                          if (value.contains(' ') ||
+                              value.contains('-') ||
+                              value.contains('.')) {
+                            errortextfield = 'Don\'t use blank spaces';
+                          } else {
+                            errortextfield = '';
+                            whatsappData.updatePhone(value);
+                          }
+                        });
+                      },
+                      decoration: InputDecoration(
+                        errorText:
+                            errortextfield.isEmpty ? null : errortextfield,
+                        focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32.0),
+                          ),
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                        ),
+                        prefixIcon: const Icon(
+                          Icons.phone,
+                          color: Colors.black,
+                        ),
+                        suffixIcon: Visibility(
+                          visible: textfieldphone.text.isNotEmpty,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                textfieldphone.clear();
+                                whatsappData.phone = '';
+                              });
+                            },
+                            child: const Icon(
+                              Icons.clear,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        hintText: 'Phone Number',
+                        hintTextDirection: TextDirection.ltr,
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32.0),
                           ),
                         ),
                       ),
-                      hintText: 'Phone Number',
-                      hintTextDirection: TextDirection.ltr,
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32.0),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextFormField(
+                      autofocus: false,
+                      controller: textfieldtext,
+                      keyboardType: TextInputType.text,
+                      cursorColor: Colors.black,
+                      onChanged: (value) {
+                        whatsappData.updateMessage(value);
+                      },
+                      decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32.0),
+                          ),
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                        ),
+                        hintTextDirection: TextDirection.ltr,
+                        prefixIcon: Icon(
+                          Icons.message,
+                          color: Colors.black,
+                        ),
+                        hintText: 'Message (Optional)',
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    autofocus: false,
-                    controller: textfieldtext,
-                    keyboardType: TextInputType.text,
-                    cursorColor: Colors.black,
-                    onChanged: (value) {
-                      whatsappData.updateMessage(value);
-                    },
-                    decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32.0),
-                        ),
-                        borderSide: BorderSide(width: 1, color: Colors.black),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
                       ),
-                      hintTextDirection: TextDirection.ltr,
-                      prefixIcon: Icon(
-                        Icons.message,
-                        color: Colors.black,
-                      ),
-                      hintText: 'Message (Optional)',
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                    onPressed: () async {
-                      var connectivityResult =
-                          await (Connectivity().checkConnectivity());
-                      if (connectivityResult == ConnectivityResult.none) {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(Constants.snackbarlnetwork);
-                      } else if (whatsappData.phone.isEmpty) {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(Constants.snackbarempty);
-                        return;
-                      } else if (whatsappData.phone.length < 9) {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(Constants.snackbarlength);
-                        return;
-                      } else if (whatsappData.phone.length > 12) {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(Constants.snackbaroverlength);
-                        return;
-                      } else if (textfieldphone.text.contains(' ')) {
-                        return;
-                      } else {
-                        String code = whatsappData.code.replaceAll("+", "");
-                        var url =
-                            "https://wa.me/${code}${whatsappData.phone}?text=${whatsappData.message}";
-                        if (await canLaunch(url)) {
-                          await launch(url);
-                          cleartext();
-                          whatsappData.clearTextFields();
+                      onPressed: () async {
+                        var connectivityResult =
+                            await (Connectivity().checkConnectivity());
+                        if (connectivityResult == ConnectivityResult.none) {
+                          Constants.showToastMessage('No Internet Connection');
+                        } else if (whatsappData.phone.isEmpty) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(Constants.snackbarempty);
+                          return;
+                        } else if (whatsappData.phone.length < 9) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(Constants.snackbarlength);
+                          return;
+                        } else if (whatsappData.phone.length > 12) {
+                          // Constants.showToastMessage(
+                          //     'please check the number and try again');
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(Constants.snackbaroverlength);
+                          return;
+                        } else if (textfieldphone.text.contains(' ')) {
+                          return;
                         } else {
-                          throw "Could not launch $url";
+                          String code = whatsappData.code.replaceAll("+", "");
+                          var url =
+                              "https://wa.me/${code}${whatsappData.phone}?text=${whatsappData.message}";
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                            cleartext();
+                            whatsappData.clearTextFields();
+                          } else {
+                            throw "Could not launch $url";
+                          }
                         }
-                      }
-                    },
-                    child: const Text(
-                      "Message",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+                      },
+                      child: const Text(
+                        "Message",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Center(
-                    child: Text(
-                      'App Version: ${whatsappData.appVersion}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 70),
+                    child: Center(
+                      child: Text(
+                        'App Version: ${whatsappData.appVersion}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Center(
-                    child: Text(
-                      '© 2023 Direct Chat',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Center(
+                      child: Text(
+                        '© 2023 Direct Chat',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // Visibility(
-                //   visible: isListTileVisible,
-                //   child: Container(
-                //     width: MediaQuery.of(context).size.width * 0.9,
-                //     height: MediaQuery.of(context).size.height * 0.15,
-                //     color: Colors.grey[400],
-                //     child: const Padding(
-                //       padding: EdgeInsets.all(12),
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           Text(
-                //             "New Feature Alert!!!",
-                //             style: TextStyle(
-                //               fontFamily: AutofillHints.birthdayDay,
-                //               fontSize: 18,
-                //               fontWeight: FontWeight.bold,
-                //             ),
-                //           ),
-                //           Text(
-                //             "Get your personalized QR code for easy mobile number sharing – generate, scan, and connect hassle-free!",
-                //             style: TextStyle(
-                //               fontFamily: AutofillHints.birthdayDay,
-                //               fontSize: 18,
-                //             ),
-                //           )
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ],
+                  // Visibility(
+                  //   visible: isListTileVisible,
+                  //   child: Container(
+                  //     width: MediaQuery.of(context).size.width * 0.9,
+                  //     height: MediaQuery.of(context).size.height * 0.15,
+                  //     color: Colors.grey[400],
+                  //     child: const Padding(
+                  //       padding: EdgeInsets.all(12),
+                  //       child: Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           Text(
+                  //             "New Feature Alert!!!",
+                  //             style: TextStyle(
+                  //               fontFamily: AutofillHints.birthdayDay,
+                  //               fontSize: 18,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           Text(
+                  //             "Get your personalized QR code for easy mobile number sharing – generate, scan, and connect hassle-free!",
+                  //             style: TextStyle(
+                  //               fontFamily: AutofillHints.birthdayDay,
+                  //               fontSize: 18,
+                  //             ),
+                  //           )
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
             ),
           ),
         ),

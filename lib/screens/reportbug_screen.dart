@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -45,11 +46,11 @@ class Reportbug extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                   ),
-                  onPressed: (() {
-                    if (controllerMessage.text.length < 20) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(Constants.snackbarfeedbacklentherror);
+                  onPressed: (() async {
+                    var connectivityResult =
+                        await (Connectivity().checkConnectivity());
+                    if (connectivityResult == ConnectivityResult.none) {
+                      Constants.showToastMessage('No Internet Connection');
                     } else {
                       launchEmail(
                         // subject: controllersubject.text,

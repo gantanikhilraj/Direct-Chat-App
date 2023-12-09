@@ -149,14 +149,15 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                   ),
                   onPressed: () {
                     if (phoneController.text.isEmpty) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(Constants.qrCodeEmpty);
+                      // ScaffoldMessenger.of(context)
+                      //   ..hideCurrentSnackBar()
+                      //   ..showSnackBar(Constants.qrCodeEmpty);
+                      Constants.showToastMessage(
+                          'Enter Phone Number to Generate QR Code');
                     } else if (phoneController.text.length < 9 ||
                         phoneController.text.length > 12) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(Constants.snackbarlength);
+                      Constants.showToastMessage(
+                          'Please enter a valid phone number');
                     } else {
                       generateWhatsAppURL();
                     }

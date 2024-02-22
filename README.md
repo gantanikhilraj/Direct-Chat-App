@@ -1,7 +1,7 @@
 # Direct-Chat-&-QR App for WhatsApp
 
 
-" Direct Chat & QR: Initiate conversations without saving contacts "
+" Direct Chat & QR: Initiate conversations without saving contacts in WhatsApp "
 
 
 ## Project Details
@@ -13,17 +13,17 @@
 - This App may be especially useful for businesses or professionals who frequently communicate with new clients or customers but do not want to add every contact to their phone's address book.
 - Users can communicate or chat with individuals who have a mobile number from any country, as long as they have a valid WhatsApp account associated with that number.
 - Additionally, users should ensure they have the correct phone number before sending a message, as there is no saved contact to verify the information.
-- Generate QR codes for any phone number directly within the app.Once created, these QR codes can be saved for future use or shared across various platforms.
+- Generate QR codes for any phone number directly within the app. Once created, these QR codes can be saved for future use or shared across various platforms.
 - By scanning a QR code, users can instantly initiate a chat on WhatsApp, bypassing the need to manually enter or save phone numbers. It’s quick, efficient, and seamless.
 
-## Website Link
-- [WhatsApp Direct Chat Web](https://whatsappdirectme.web.app)
+## App Playstore Link
+- [Direct Chat & QR App](https://play.google.com/store/apps/details?id=com.nikhil.directchatapp)
 
 ## Installation
 
 To install WhatsApp Direct Chat, follow the steps below:
 
-1. Clone the repository (`git clone https://github.com/gantanikhilraj/WhatsApp-Direct-Messager-Web.git`)
+1. Clone the repository (`git clone https://github.com/gantanikhilraj/Direct-Chat-App.git`)
 2. Install the required dependencies (`flutter pub get`)
 3. Start the app (`flutter run`)
 

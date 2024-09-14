@@ -6,7 +6,7 @@ import 'package:whatsapp_dm/screens/home_screen.dart';
 import 'package:whatsapp_dm/modals/provider_data.dart';
 import 'package:whatsapp_dm/screens/qr_screen.dart';
 import 'package:whatsapp_dm/screens/reportbug_screen.dart';
-import 'package:whatsapp_dm/screens/splash_screen.dart';
+// import 'package:whatsapp_dm/screens/splash_screen.dart';
 
 void main() {
   setPathUrlStrategy();
@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const Homescreen(),
       routes: {
-        Homescreen.id: (context) => const Homescreen(),
+        // Homescreen.id: (context) => const Homescreen(),
         QRCodeGenerator.id: (context) => const QRCodeGenerator(),
         Reportbug.id: (context) => Reportbug(),
       },

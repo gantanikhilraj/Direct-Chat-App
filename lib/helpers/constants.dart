@@ -45,9 +45,14 @@ class Constants {
     backgroundColor: Colors.red,
     duration: const Duration(seconds: 2),
   );
-  static const snackbarfeedbacklentherror = SnackBar(
-    duration: Duration(milliseconds: 1500),
-    content: Text("Feedback or bug should be atleast 20 words"),
+  static final snackbarfeedbacklentherror = SnackBar(
+    action: SnackBarAction(
+      label: "×",
+      textColor: Colors.white,
+      onPressed: (() {}),
+    ),
+    duration: const Duration(milliseconds: 1500),
+    content: const Text("Feedback or bug should be atleast 20 words"),
     backgroundColor: Colors.red,
   );
   static final qrCodeEmpty = SnackBar(
@@ -72,7 +77,7 @@ class ConstantsText {
   static String playstoreURL = "https://directchat.openinapp.co/playstorelink";
   static String shareText =
       "Unlock Seamless Conversations on WhatsApp 🚀: Start Chats without Adding Contacts First! 📲💬 Try this App Today! 🔥👉";
-  static String appTitle = "Direct Chat";
+  static String appTitle = "Direct Chat & QR";
   static String mainScreenTitle =
       "Direct Chat & QR :\nInitiate conversations without saving contacts";
 }

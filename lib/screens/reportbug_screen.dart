@@ -23,8 +23,8 @@ class Reportbug extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.green[400],
           ),
           backgroundColor: Colors.green,
           title: const Text("Feedback or Bug Report"),
@@ -51,6 +51,10 @@ class Reportbug extends StatelessWidget {
                         await (Connectivity().checkConnectivity());
                     if (connectivityResult == ConnectivityResult.none) {
                       Constants.showToastMessage('No Internet Connection');
+                    } else if (controllerMessage.text.length < 20) {
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(Constants.snackbarfeedbacklentherror);
                     } else {
                       launchEmail(
                         // subject: controllersubject.text,

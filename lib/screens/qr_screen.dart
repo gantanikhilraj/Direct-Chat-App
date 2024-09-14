@@ -118,6 +118,8 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                         onTap: () {
                           setState(() {
                             phoneController.clear();
+                            whatsappURL = '';
+                            // cleartext();
                           });
                         },
                         child: const Icon(
@@ -132,13 +134,29 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                 const SizedBox(height: 25),
                 TextField(
                   controller: messageController,
-                  decoration: const InputDecoration(
-                    focusedBorder: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 2.0),
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     ),
                     labelText: 'Message (Optional)',
-                    labelStyle: TextStyle(color: Colors.black),
+                    labelStyle: const TextStyle(color: Colors.black),
+                    suffixIcon: Visibility(
+                      visible: messageController.text.isNotEmpty,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            messageController.clear();
+                            // whatsappURL = '';
+                            // cleartext();
+                          });
+                        },
+                        child: const Icon(
+                          Icons.clear,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                   cursorColor: Colors.black,
                 ),
@@ -149,15 +167,18 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
                   ),
                   onPressed: () {
                     if (phoneController.text.isEmpty) {
-                      // ScaffoldMessenger.of(context)
-                      //   ..hideCurrentSnackBar()
-                      //   ..showSnackBar(Constants.qrCodeEmpty);
-                      Constants.showToastMessage(
-                          'Enter Phone Number to Generate QR Code');
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(Constants.qrCodeEmpty);
+                      // Constants.showToastMessage(
+                      //     'Enter Phone Number to Generate QR Code');
                     } else if (phoneController.text.length < 9 ||
                         phoneController.text.length > 12) {
-                      Constants.showToastMessage(
-                          'Please enter a valid phone number');
+                      // Constants.showToastMessage(
+                      //     'Please enter a valid phone number');
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(Constants.snackbarlength);
                     } else {
                       generateWhatsAppURL();
                     }

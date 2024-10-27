@@ -28,7 +28,7 @@ class _Homescreen extends State<Homescreen> {
   bool adShown = false;
   initInterstitialAd() {
     InterstitialAd.load(
-      adUnitId: AdMobService.testBannerInter,
+      adUnitId: AdMobService.homeShareInter,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
